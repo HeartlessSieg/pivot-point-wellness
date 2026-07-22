@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pivot Point Wellness — Nutrition &amp; Wellness Coaching for Midlife</title>
+<meta name="description" content="Pivot Point Wellness offers personalized nutrition and wellness coaching for people in midlife who are ready to reorient and build their next chapter with intention.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --ink: #1F1329;
+    --ink-soft: #4A3B57;
+    --plum: #5B2A86;
+    --plum-deep: #33195A;
+    --plum-pale: #EFE7F7;
+    --turq: #0F9C96;
+    --turq-bright: #17BDB4;
+    --turq-pale: #E2F5F3;
+    --paper: #FBFAFD;
+    --mist: #F1ECF7;
+    --white: #FFFFFF;
+    --line: rgba(31,19,41,0.14);
+    --shadow: 0 20px 50px -25px rgba(51,25,90,0.35);
+    --radius: 14px;
+    --max: 1180px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  body{
+    margin:0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    margin: 0 0 0.4em 0;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+  img{ max-width: 100%; display:block; }
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--turq);
+    font-weight: 500;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 22px; height: 1px;
+    background: var(--turq);
+    display:inline-block;
+  }
+
+  :focus-visible{
+    outline: 2.5px solid var(--turq);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration:none;
+    border: 1.5px solid transparent;
+    cursor:pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn-primary{
+    background: var(--turq);
+    color: var(--white);
+    box-shadow: 0 12px 24px -12px rgba(15,156,150,0.55);
+  }
+  .btn-primary:hover{ background: var(--turq-bright); transform: translateY(-1px); }
+  .btn-ghost{
+    background: transparent;
+    border-color: var(--plum);
+    color: var(--plum);
+  }
+  .btn-ghost:hover{ background: var(--plum-pale); }
+  .btn-onDark{
+    background: var(--white);
+    color: var(--plum-deep);
+  }
+  .btn-onDark:hover{ background: var(--turq-pale); }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(251,250,253,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 32px;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:14px; text-decoration:none; }
+  .logo-slot{
+    width: 52px; height: 52px;
+    border: 1.5px dashed var(--plum);
+    border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--plum);
+    background: var(--plum-pale);
+    text-align:center;
+    line-height:1.2;
+    flex-shrink:0;
+  }
+  .brand-text{ font-family:'Fraunces', serif; line-height:1.05; }
+  .brand-text .b1{ font-size: 19px; font-weight:600; color: var(--ink); display:block; }
+  .brand-text .b2{ font-size: 12.5px; font-weight:400; font-style: italic; color: var(--ink-soft); }
+
+  nav.links{ display:flex; gap:34px; align-items:center; }
+  nav.links a{
+    text-decoration:none; font-size: 14.5px; font-weight:500; color: var(--ink-soft);
+    position:relative; padding: 4px 0;
+  }
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background: var(--turq); transition: width 0.2s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+
+  .menu-btn{
+    display:none; background:none; border:none; cursor:pointer; padding:8px;
+  }
+  .menu-btn span{ display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; border-radius:2px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 110px;
+    overflow: hidden;
+    background:
+      radial-gradient(600px 400px at 82% -10%, var(--turq-pale) 0%, transparent 60%),
+      radial-gradient(500px 380px at -5% 110%, var(--plum-pale) 0%, transparent 60%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(34px, 4.6vw, 58px);
+    line-height: 1.06;
+  }
+  .hero h1 em{
+    font-style: italic; color: var(--plum); font-weight:500;
+  }
+  .hero p.lead{
+    font-size: 18px; color: var(--ink-soft); max-width: 480px; margin: 22px 0 34px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .hero-photo-slot{
+    aspect-ratio: 5/4;
+    border-radius: var(--radius);
+    background: linear-gradient(155deg, var(--plum-pale), var(--turq-pale));
+    border: 1.5px dashed var(--plum);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px; color: var(--plum);
+    font-family:'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing:0.06em;
+    text-align:center; padding: 24px;
+  }
+  .hero-photo-slot .icon{ font-size: 30px; }
+
+  /* ---------- Section dividers (pivot motif) ---------- */
+  .pivot-divider{
+    display:flex; align-items:center; justify-content:center;
+    padding: 0 0 6px;
+  }
+  .pivot-divider svg{ width: 120px; height: 34px; }
+
+  section{ padding: 92px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size: clamp(28px, 3.2vw, 40px); }
+  .section-head p{ color: var(--ink-soft); font-size: 16.5px; margin-top: 14px; }
+
+  /* ---------- About ---------- */
+  .about{ background: var(--white); }
+  .about-grid{
+    display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items:center;
+  }
+  .photo-slot{
+    aspect-ratio: 4/5;
+    border-radius: var(--radius);
+    background: linear-gradient(155deg, var(--plum-pale), var(--turq-pale));
+    border: 1.5px dashed var(--plum);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px; color: var(--plum);
+    font-family:'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing:0.06em;
+    text-align:center; padding: 24px;
+  }
+  .photo-slot .icon{ font-size: 30px; }
+  .placeholder-copy{ color: var(--ink-soft); font-style: italic; }
+  .placeholder-copy b{ font-style: normal; color: var(--plum); }
+
+  /* ---------- CTA / Contact ---------- */
+  .contact{ background: var(--paper); }
+  .contact-grid{ display:grid; grid-template-columns: 0.95fr 1.05fr; gap: 60px; }
+  .contact-copy .eyebrow{ margin-bottom: 16px; }
+  .contact-copy h2{ font-size: clamp(26px,3vw,36px); }
+  .contact-copy p{ color: var(--ink-soft); margin-top:14px; max-width: 420px; }
+  .contact-list{ margin-top: 32px; display:flex; flex-direction:column; gap:16px; }
+  .contact-list .row{ display:flex; gap:14px; align-items:flex-start; font-size:14.5px; }
+  .contact-list .row .k{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--turq); text-transform:uppercase; letter-spacing:0.06em; min-width:90px; padding-top:2px; }
+
+  form.consult{
+    background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius);
+    padding: 36px; box-shadow: var(--shadow);
+  }
+  .field{ margin-bottom: 20px; }
+  .field label{ display:block; font-size:13px; font-weight:600; margin-bottom:7px; color: var(--ink); }
+  .field input, .field select, .field textarea{
+    width:100%; padding: 12px 14px; border-radius: 9px; border: 1.5px solid var(--line);
+    font-family:'Inter',sans-serif; font-size:14.5px; color: var(--ink); background: var(--paper);
+    transition: border-color 0.15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color: var(--turq);
+  }
+  .field textarea{ resize: vertical; min-height: 90px; }
+  .form-note{ font-size: 12.5px; color: var(--ink-soft); margin-top: 14px; }
+  .form-success{
+    display:none; background: var(--turq-pale); border: 1.5px solid var(--turq);
+    border-radius: 10px; padding: 16px 18px; font-size: 14.5px; color: var(--plum-deep); margin-top: 16px;
+  }
+  .form-success.show{ display:block; }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--ink); color: rgba(255,255,255,0.72); padding: 56px 0 30px; }
+  .footer-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap: 40px; flex-wrap:wrap;
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.14); margin-bottom: 26px;
+  }
+  .footer-brand{ display:flex; align-items:center; gap:12px; }
+  .footer-brand .logo-slot{ width:40px; height:40px; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); }
+  .footer-brand .brand-text .b1{ color: var(--white); font-size:16px; }
+  .footer-brand .brand-text .b2{ color: rgba(255,255,255,0.55); }
+  .footer-links{ display:flex; gap: 44px; flex-wrap:wrap; }
+  .footer-col h4{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color: rgba(255,255,255,0.85); margin-bottom:14px; font-weight:500;}
+  .footer-col a{ display:block; text-decoration:none; color: rgba(255,255,255,0.65); font-size:14px; margin-bottom:10px; }
+  .footer-col a:hover{ color: var(--turq-bright); }
+  .footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12.5px; color: rgba(255,255,255,0.45); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    .hero-grid, .about-grid, .contact-grid{ grid-template-columns: 1fr; }
+    .hero-photo-slot{ order:-1; max-width: 340px; margin: 0 auto; }
+    nav.links{ display:none; }
+    .menu-btn{ display:block; }
+    .nav-right .btn-primary{ padding: 11px 18px; font-size:14px; }
+  }
+  @media (max-width: 560px){
+    .wrap, .nav{ padding-left:20px; padding-right:20px; }
+    section{ padding: 64px 0; }
+    .hero{ padding: 56px 0 70px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <!-- LOGO PLACEHOLDER: replace this .logo-slot div with <img src="your-logo.png" alt="Pivot Point Wellness logo"> -->
+      <div class="logo-slot">YOUR<br>LOGO</div>
+      <span class="brand-text"><span class="b1">Pivot Point</span><span class="b2">Wellness</span></span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-primary">Book a free consult</a>
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Nutrition &amp; Wellness Coaching for Midlife</div>
+        <h1>Midlife isn't a decline.<br>It's a <em>pivot point.</em></h1>
+        <p class="lead">Pivot Point Wellness helps people in midlife reorient — around food, energy, body, and identity — as everything else in life is shifting too. This isn't about getting back to who you were. It's about building the next chapter with intention.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book a free consult</a>
+          <a href="#about" class="btn btn-ghost">Meet your coach</a>
+        </div>
+      </div>
+      <!-- HERO IMAGE PLACEHOLDER: replace this .hero-photo-slot div with <img src="your-photo.jpg" alt="..."> -->
+      <div class="hero-photo-slot">
+        <span class="icon">🖼️</span>
+        <span>IMAGE PLACEHOLDER<br>— swap in a hero photo or graphic here —</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="pivot-divider" aria-hidden="true">
+    <svg viewBox="0 0 120 34"><line x1="10" y1="17" x2="110" y2="17" stroke="var(--line)" stroke-width="1.5"/><circle cx="60" cy="17" r="5" fill="var(--turq)"/></svg>
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="photo-slot reveal">
+        <span class="icon">📷</span>
+        <span>PHOTO PLACEHOLDER<br>— swap for a warm, real photo of your coach —</span>
+      </div>
+      <div class="about-copy reveal">
+        <div class="eyebrow">Meet your coach</div>
+        <h2>Hi, I'm <span style="color:var(--plum); font-style:italic;">[Coach Name]</span>.</h2>
+        <p class="placeholder-copy">[This is the spot for your bio and philosophy. Write a few paragraphs about your background, what led you to coaching, and how you think about this work — in your own voice.] <b>Replace this whole block with your real story.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy reveal">
+        <div class="eyebrow">Start here</div>
+        <h2>Ready to find your pivot point?</h2>
+        <p>Book a free 20-minute consult — no pressure, just a conversation about where you are in this season of life and whether coaching is the right fit.</p>
+        <div class="contact-list">
+          <div class="row"><span class="k">Email</span><span>[hello@pivotpointwellness.com]</span></div>
+          <div class="row"><span class="k">Phone</span><span>[(555) 555-5555]</span></div>
+          <div class="row"><span class="k">Based in</span><span>[City, State] · Sessions available virtually</span></div>
+        </div>
+      </div>
+      <form class="consult reveal" id="consultForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your full name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="interest">What are you interested in?</label>
+          <select id="interest" name="interest">
+            <option>Nutrition Audit (single session)</option>
+            <option>1:1 Coaching</option>
+            <option>Group Program</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Tell me a bit about your goals</label>
+          <textarea id="message" name="message" placeholder="Share whatever feels relevant — what's prompting this, what you've tried before, what you're hoping changes."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Request my free consult</button>
+        <p class="form-note">This form doesn't send anywhere yet — connect it to an email service like Formspree, or a plain <code>mailto:</code> link, once you're ready to go live.</p>
+        <div class="form-success" id="formSuccess">Thanks! This is a placeholder confirmation — once the form is connected to a real inbox, this message will confirm the request was actually sent.</div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="footer-brand">
+        <!-- LOGO PLACEHOLDER (footer version): replace with your logo image -->
+        <div class="logo-slot">LOGO</div>
+        <span class="brand-text"><span class="b1">Pivot Point Wellness</span><span class="b2">Nutrition &amp; wellness coaching for midlife</span></span>
+      </a>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <a href="#about">About</a>
+          <a href="#contact">Book a consult</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#">[Instagram]</a>
+          <a href="#">[Facebook]</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Pivot Point Wellness. All rights reserved.</span>
+      <span>[Content and pricing on this site are placeholders — replace before publishing.]</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu: simple toggle of the nav links list
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('nav.links');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navLinks.style.display === 'flex';
+    navLinks.style.display = isOpen ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '68px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'var(--paper)';
+    navLinks.style.padding = '20px 32px';
+    navLinks.style.borderBottom = '1px solid var(--line)';
+    navLinks.style.gap = '18px';
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Contact form: static placeholder success (no backend wired up)
+  const form = document.getElementById('consultForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    success.classList.add('show');
+    form.querySelectorAll('input, select, textarea').forEach(f => { if(f.type !== 'submit') f.value=''; });
+  });
+</script>
+
+</body>
+</html>
